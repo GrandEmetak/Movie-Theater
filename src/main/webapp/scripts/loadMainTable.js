@@ -19,11 +19,18 @@ function sendHall() {
     });
 }
 
-function onclick(e) {
-
-    var printBlock = document.getElementById("table");
-    var language = e.target.value;
+function click() {
+    // let idSelect = document.querySelectorAll('id');
+    // let printBlock1 = document.getElementById("id");
+    // var printBlock = document.getElementById("table");
+    let getIdlink = document.getElementsByName('place');
+    let printBlock1 = document.getElementsByName('value');
+    var language = e.target.value; //someObject
     printBlock.textContent = "Вы выбрали: " + language;
+    console.log(printBlock);
+    console.log(printBlock1);
+    console.log(getIdlink);
+    console.info("My first car was a",  ". The object is:", );
 
 }
 

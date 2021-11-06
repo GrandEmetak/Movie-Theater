@@ -1,41 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:background-size="http://java.sun.com/JSP/Page">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!--Ajax Jquery -->
+
+    <script type="text/javascript">
+
+        $(document).ready(function () { // старт при загрузке страницы
+            const paramsString = document.location.search; // ?page=4&limit=10&sortby=desc
+            const searchParams = new URLSearchParams(paramsString);
+            alert(searchParams);
+            //const url = new URL.url;(url [, base]);
+
+            const str = searchParams.toString().split('=');
+            const str2 = str[1].split('.');
+            console.log(str2[0] + ' some code ' + str2[1]);
+            console.log(str)
+            // '?message=hello&who=world'
+            console.log('ТО ЧТО ИЩЕМ : ' + searchParams.search);
+            //sendGreeting();
+            $('#information h3:last').after('<h3>' + 'Вы выбрали ряд ' + str2[0] + ' место ' + str2[1] + ', ' + 'Сумма : 500 рублей.' + '</h3>');
+        });
+    </script>
+    <script>
+        $(function () {
+            var theWindow = $(window),
+                $bg = $("#bg"),
+                aspectRatio = $bg.width() / $bg.height();
+            function resizeBg() {
+                if ((theWindow.width() / theWindow.height()) < aspectRatio) {
+                    $bg
+                        .removeClass()
+                        .addClass('bgheight');
+                } else {
+                    $bg
+                        .removeClass()
+                        .addClass('bgwidth');
+                }
+            }
+            theWindow.resize(function () {
+                resizeBg();
+            }).trigger("resize");
+        });
+    </script>
+
+    <title>Hello, world!</title>
+
 </head>
-<body>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<!--<body background=image/Fon_3.jpg> поставить когда будет рабоать проект -->
+<body><!---->
+<!--<body background=image/okno-kholod-uzor.jpg > --> <!--поставить когда будет рабоать проект -->
+<body style="background: url('image/okno-kholod-uzor.jpg') no-repeat fixed; -webkit-background-size: cover; background-size: cover;">
 <div class="container">
-  <div class="row pt-3">
-    <h3>
-      Вы выбрали ряд 1 место 1, Сумма : 500 рублей.
-    </h3>
-  </div>
-  <div class="row">
-    <form>
-      <div class="form-group">
-        <label for="username">ФИО</label>
-        <input type="text" class="form-control" id="username" placeholder="ФИО">
-      </div>
-      <div class="form-group">
-        <label for="phone">Номер телефона</label>
-        <input type="text" class="form-control" id="phone" placeholder="Номер телефона">
-      </div>
-      <button type="button" class="btn btn-success">Оплатить</button>
-    </form>
-  </div>
+    <div class="row pt-3" id="information">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+            </li>
+        </ul>
+        <h3></h3>
+        <!-- <h3>  Вы выбрали ряд 1 место 1, Сумма : 500 рублей. </h3> --> <!-- Установить свой текст? -->
+    </div>
+    <div class="row">
+        <form>
+            <div class="form-group">
+                <label for="username">ФИО</label>
+                <input type="text" class="form-control" id="username" placeholder="ФИО">
+            </div>
+            <div class="form-group">
+                <label for="phone">Номер телефона</label>
+                <input type="text" class="form-control" id="phone" placeholder="Номер телефона">
+            </div>
+            <button type="button" class="btn btn-success">Оплатить</button>
+            <script>
+                $('#btn').click(function () {
+                    alert('ВЫ ОПЛАТИЛИ Ряд / Место : ' + $('input[name="place"]:checked').val());
+                    let val = $('input[name="place"]:checked').val();
+                });
+            </script>
+        </form>
+    </div>
 </div>
 </body>
 </html>

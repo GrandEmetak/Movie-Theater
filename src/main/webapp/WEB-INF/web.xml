@@ -13,10 +13,18 @@
         <servlet-name>HallServlet</servlet-name>
         <servlet-class>ru.job4j.cinema.servlet.HallServlet</servlet-class>
     </servlet>
-    <!-- Обратите внимание. Этот сервлет будет доступен по адресу /index.do.
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>ru.job4j.cinema.servlet.PaymentServlet</servlet-class>
+    </servlet>
+    <!-- Обратите внимание. Этот сервлет будет доступен по адресу /hall.do.
           Тут есть расширение, оно нужно будет в разделе безопастность. -->
     <servlet-mapping>
         <servlet-name>HallServlet</servlet-name>
         <url-pattern>/hall.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/pay.do</url-pattern>
     </servlet-mapping>
 </web-app>
