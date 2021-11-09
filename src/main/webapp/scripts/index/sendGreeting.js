@@ -3,7 +3,7 @@ function sendGreeting() {
         type: 'POST', /* Куда пойдет запрос */
         url: 'http://localhost:8080/job4j_cinema/hall.do',
         cache: false,
-        // data: 'name=' + $('#email').val(), /* Параметры передаваемые в запросе. */
+      /*  // data: 'name=' + $('#email').val(), */ /* Параметры передаваемые в запросе. */
         dataType: 'json '  /* Тип данных в ответе (xml, json, script, html). */
     }).done(function (response) { /* В переменной data содержится ответ от hall.do. */
         let str = '';

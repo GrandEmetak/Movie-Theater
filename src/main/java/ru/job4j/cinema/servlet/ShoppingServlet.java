@@ -12,6 +12,7 @@ import java.io.IOException;
 /**
  * Сервлет получает данные с страницы оплаты и заносит их в БД,
  * в таблицы Account, Session
+ * url-pattern>/shop.do</url-pattern
  */
 public class ShoppingServlet extends HttpServlet {
     @Override

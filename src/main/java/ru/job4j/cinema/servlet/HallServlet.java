@@ -21,11 +21,11 @@ import java.util.List;
  * Сервлет получает данные о текущес состоянии мест кинотеатра (заняты/свободны)
  * places busy or free
  */
-//@WebServlet(urlPatterns = "/hall.do")
+/*@WebServlet(urlPatterns = "/hall.do")*/
 public class HallServlet extends HttpServlet {
     private static final Gson GSON = new GsonBuilder().create();
-    List<Place> placeList = new ArrayList<>();
-    Place[][] arrPlace = new Place[3][3];
+    private List<Place> placeList = new ArrayList<>();
+    private Place[][] arrPlace = new Place[3][3];
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

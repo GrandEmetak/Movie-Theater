@@ -22,7 +22,6 @@ public class Ticket {
         return ticket;
     }
 
-
     public int getId() {
         return id;
     }
