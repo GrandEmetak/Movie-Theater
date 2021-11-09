@@ -93,7 +93,8 @@ public class PsqlStore implements Store {
     public void reservePlace(int row, int cell) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "UPDATE session SET status = false where row = ? and cell = ?")) {
+                     "UPDATE session SET status = false where row = ? and cell = ?"
+             )) {
             ps.setInt(1, row);
             ps.setInt(2, cell);
             ps.execute();

@@ -5,7 +5,8 @@ import ru.job4j.cinema.store.PsqlStore;
 
 public class Temp {
     public static void main(String[] args) {
-        var name1 = "JohnSmith@post.com";
+       // var name1 = "JohnSmith@post.com";
+        var name1 = "JohnPost1@post.com";
         var name2 = "12095557545";
         var name3 = "3.3";
         System.out.println("Parse " + Long.parseLong(name2));
