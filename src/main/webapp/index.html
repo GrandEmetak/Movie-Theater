@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Refresh" content="15" /> <!-- обновление страницы каждые 15 секунд через html -->
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://snipp.ru/cdn/bootstrap/4.3/bootstrap.min.css">
@@ -22,155 +23,36 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!--Ajax Jquery -->
-    <!--<script type="text/javascript">
-        // refresh: 30 sec время таймера
-        setTimeout(function () {
-            window.location.href = getContextPath();
-        }, 30000);
-    </script> -->
-    <!--<script src="scripts/loadMainTable.js"></script> -->
-    <!--   <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script> -->
-    <script type="text/javascript">
-        // let y = 1;
-        // let x = 1;
-        $(document).ready(function () { // старт при загрузке страницы
-            sendGreeting();
-        });
-    </script>
-    <!--    <script>-->
-    <!--        function increaseY() {-->
-    <!--            return y++;-->
-    <!--        }-->
-    <!--    </script>-->
-    <!--    <script>-->
-    <!--        function increaseX() {-->
-    <!--            return x++;-->
-    <!--        }-->
-    <!--    </script>-->
+
+    <script src="scripts/index/sendGreeting.js"></script>
+    <script src="scripts/index/redirect.js"></script>
+   <!-- <script src="scripts/index/reload_interval.js"></script> перезагрузка страницы через JS -->
+
+<!--    <script type="text/javascript">-->
+<!--        $(document).ready(function () { // старт при загрузке страницы-->
+<!--            sendGreeting();-->
+<!--            //reload_interval(15000);-->
+<!--        });-->
+<!--    </script>-->
     <script>
-        // class Place{
-        //     constructor(
-        //         id: number,
-        //         row: number,
-        //         cell: number,
-        //         status: boolean
-        //     ) {
-        //     }
-        // }
-        function sendGreeting() {
-            $.ajax({
-                type: 'POST', /* Куда пойдет запрос */
-                url: 'http://localhost:8080/job4j_cinema/hall.do',
-                cache: false,
-                // data: 'name=' + $('#email').val(), /* Параметры передаваемые в запросе. */
-                dataType: 'json '  /* Тип данных в ответе (xml, json, script, html). */
-            }).done(function (response) { /* В переменной data содержится ответ от hall.do. */
-                let str = '';
-                for (let i = 0; i < response.length; i++) {
-                    str += '<tr> + <th> ' + (i + 1) + '</th>';
-                    for (let j = 0; j < response[i].length; j++) {
-                        console.log(response[i][j])
-                        if (response[i][j].status === false) {
-                            str += '<td>' + '<label>' + '<input type="radio" name="place" value="1.1" disabled>' + 'Ряд ' + response[i][j].row
-                                + ', Место ' + response[i][j].cell + '</label>' + '</td>';
-                        } else {
-                            let ind = response[i][j].row + '.' + response[i][j].cell;
-                            str += '<td>' + '<label>' + '<input type="radio" name="place"' + 'value="' + ind + '">' + 'Ряд ' + response[i][j].row
-                                + ', Место ' + response[i][j].cell + '</label>' + '</td>';
-                        }
-                    }
-                    str += '<tr>';
-                    $('#table tr:last').after(str);
-                    str = '';
-                }
-                console.log(str)
-            }).fail(function (response) {
-                console.log(response);
-                alert('Ошибка');
-            });
-        }
+        window.onload = sendGreeting();
     </script>
 
-    <script>
-        function addRow(response) {
-            //получаем значение поля usr
-            const name = $('#usr').val();
-            const same = data.
-                //получаем ссылку на последний элемент в таблице.
-                //и после него добавляем html
-
-                $('#table tr:last').after('<tr>' + '<th>' + '1' + '</th>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>' + '</tr>'
-                    + '<tr>' + '<th> 2 </th>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>' + '</tr>'
-                    + '<tr>' + '<th> 3 </th>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>'
-                    + '<td>' + '<label>' + '<input type="radio" name="place" value="1.1">' + 'Ряд 1, Место 1' + '</label>' + '</td>'
-                );
-        }
-    </script>
-    <script>
-        function redirect(val) {
-            alert('YOU redirect to pay')
-               // window.location.href = 'http://localhost:8080/job4j_cinema/payment.html';
-            window.open('http://localhost:8080/job4j_cinema/payment.html?user='+ val);
-            // console.log(data)
-        }
-    </script>
-    <script>
-        function () {
-            $.ajax({
-                type: 'GET', /* Куда пойдет запрос */
-                url: 'http://localhost:8080/job4j_cinema/pay.do',
-                // cache: false,
-                //data: 'name=' + $('#email').val(), /* Параметры передаваемые в запросе. */
-
-                data: 'user=' + val, /* Параметры передаваемые в запросе. */
-                dataType: 'text' /* Тип данных в ответе (xml, json, script, html). */
-            }).done(function (data) { /* В переменной data содержится ответ от hall.do. */
-
-            }).fail(function (data) {
-                console.log(data);
-                alert('Ошибка' + data);
-            });
-        }
-    </script>
-    <script>
-        function clickF() {
-            // let idSelect = document.querySelectorAll('id');
-            // let printBlock1 = document.getElementById("id");
-            // var printBlock = document.getElementById("table");
-            let getIdlink = document.getElementsByName('place');
-            let printBlock1 = document.getElementsByName('value');
-            var value = $('input[name="place"]:checked').val();
-            alert(value);
-            //var language = e.target.value; //someObject
-            //printBlock.textContent = "Вы выбрали: " + language;
-            //  console.log(printBlock);
-            console.log(printBlock1);
-            console.log(getIdlink);
-            console.info("My first car was a", ". The object is:");
-        }
-    </script>
     <title>Job4j_cinema</title>
 </head>
-<!--<body background=image/Fon_3.jpg> фон для страницы-->
-<body>
+
+<body style="background: url('image/Fon_3.jpg') no-repeat fixed; -webkit-background-size: cover; background-size: cover;">
+
 <div class="container">
     <div class="row pt-3">
-        <h4> Бронирование месте на сеанс </h4>
+        <h4 style="color: #ffe178;"> Бронирование месте на сеанс </h4>
         <table id="table" class="table table-bordered">
             <thead>
             <tr>
-                <th style="width: 120px;">Ряд / Место</th>
-                <th> 1</th>
-                <th> 2</th>
-                <th> 3</th>
+                <th style="color: #ffe178;">Ряд / Место</th>
+                <th style="color: #ffe178;"> 1</th>
+                <th style="color: #ffe178;"> 2</th>
+                <th style="color: #ffe178;"> 3</th>
             </tr>
             </thead>
             <tbody>
@@ -178,23 +60,17 @@
 
             </form>
             </tbody>
-
         </table>
-        <button id="btn" class="btn btn-success" onclick="clickF()">Оплатить</button>
+        <button id="btn" class="btn btn-success">Оплатить</button>
     </div>
 </div>
 <div class="row float-right">
-    <!-- <button type="button" class="btn btn-success" data-id="" onclick="sendHall()">Оплатить</button> -->
-    <!--<button type="button" class="btn btn-success" onclick="click()">Оплатить</button> -->
-
-    <!-- <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>-->
     <script>
         $('#btn').click(function () {
             alert('ВЫ выбрали Ряд / Место : ' + $('input[name="place"]:checked').val());
             let val = $('input[name="place"]:checked').val();
             redirect(val)
             console.log('ТО ЧТО ПЕРЕДАЕМ В ФУНКЦИЯЮ ' + val)
-            //clickF();
         });
     </script>
 </div>

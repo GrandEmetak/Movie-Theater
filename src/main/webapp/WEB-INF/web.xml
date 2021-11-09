@@ -14,8 +14,8 @@
         <servlet-class>ru.job4j.cinema.servlet.HallServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PaymentServlet</servlet-name>
-        <servlet-class>ru.job4j.cinema.servlet.PaymentServlet</servlet-class>
+        <servlet-name>ShoppingServlet</servlet-name>
+        <servlet-class>ru.job4j.cinema.servlet.ShoppingServlet</servlet-class>
     </servlet>
     <!-- Обратите внимание. Этот сервлет будет доступен по адресу /hall.do.
           Тут есть расширение, оно нужно будет в разделе безопастность. -->
@@ -24,7 +24,7 @@
         <url-pattern>/hall.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PaymentServlet</servlet-name>
-        <url-pattern>/pay.do</url-pattern>
+        <servlet-name>ShoppingServlet</servlet-name>
+        <url-pattern>/shop.do</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -9,9 +9,18 @@ public class Account {
     private int id;
     private String userName;
     private String email;
-    private int phone;
+    private long phone;
 
-    public static  Account accountOf(int id, String userName, String email, int phone) {
+    public Account() {
+    }
+
+    public Account(String userName, String email, long phone) {
+        this.userName = userName;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public static  Account accountOf(int id, String userName, String email, long phone) {
         Account account = new Account();
         account.id = id;
         account.userName = userName;
@@ -44,11 +53,11 @@ public class Account {
         this.email = email;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

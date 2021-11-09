@@ -17,7 +17,7 @@ import java.util.Collection;
 public interface Store {
     Collection<Place> findAllPlace();
 
-    void reservePlace(int placeId);
+    void reservePlace(int row, int cell);
 
     Ticket createTicket(Ticket ticket);
 

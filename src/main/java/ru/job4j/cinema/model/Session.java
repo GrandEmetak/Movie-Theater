@@ -1,7 +1,9 @@
 package ru.job4j.cinema.model;
 
+import java.util.Objects;
+
 /**
- * Сеанс
+ * Модель описывает Сеанс/move
  */
 public class Session {
     private int id;
@@ -26,5 +28,31 @@ public class Session {
 
     public void setNameMove(String nameMove) {
         this.nameMove = nameMove;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Session session = (Session) o;
+        return id == session.id && Objects.equals(nameMove, session.nameMove);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nameMove);
+    }
+
+    @Override
+    public String toString() {
+        return "Session{"
+                + "id=" + id
+                + ", nameMove='"
+                + nameMove + '\''
+                + '}';
     }
 }

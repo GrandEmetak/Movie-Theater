@@ -59,39 +59,18 @@ public class PsqlStore implements Store {
         return Lazy.INST;
     }
 
-//    @Override
-//    public Collection<Account> findAllAccounts() {
-//        List<Account> posts = new ArrayList<>();
-//        try (Connection cn = pool.getConnection();
-//             PreparedStatement ps = cn.prepareStatement(
-//                     "SELECT * FROM post join city as t1 on city_id = t1.id")
-//        ) {
-//            try (ResultSet it = ps.executeQuery()) {
-//                while (it.next()) {
-//                    posts.add(new Post(it.getInt("id"),
-//                            it.getString("name"),
-//                            it.getString("description"),
-//                            it.getString(7),
-//                            convert(it.getTimestamp("created").toLocalDateTime()))
-//                    );
-//                }
-//            }
-//        } catch (SQLException e) {
-//            LOGGER.error("findAllPosts() ERROR. Unable to SQL query", e);
-//        }
-//        return posts;
-//        return null;
-//    }
-
-    @Override //ORDER BY id
+    /**
+     * show all places
+     * @return
+     */
+    @Override
     public Collection<Place> findAllPlace() {
         List<Place> list = new ArrayList<>();
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("select * from session")
+             PreparedStatement ps = cn.prepareStatement("select * from session order by id")
         ) {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
-                    System.out.println("Проверка метода Ж -___");
                     list.add(Place.placeOf(it.getInt("id"),
                             it.getInt("row"),
                             it.getInt("cell"),
@@ -99,26 +78,76 @@ public class PsqlStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("ERror падет -Ю");
-            //LOGGER.error("Exception: ", e);
+            LOGGER.error("Exception: ", e);
         }
         return list;
     }
 
+    /**
+     * Добавление данных о выбранном месте в таблицу session
+     *
+     * @param row  ряд
+     * @param cell место
+     */
     @Override
-    public void reservePlace(int placeId) {
+    public void reservePlace(int row, int cell) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "UPDATE hall SET isitfree = false where id = ?")) {
-            ps.setInt(1, placeId);
+                     "UPDATE session SET status = false where row = ? and cell = ?")) {
+            ps.setInt(1, row);
+            ps.setInt(2, cell);
             ps.execute();
         } catch (Exception e) {
             LOGGER.error("Exception: ", e);
         }
     }
 
+
+    /**
+     * put Object Account to DB table account
+     *
+     * @param account Object
+     * @return Object Account which will be posted in to DB account
+     */
     @Override
+    public Account createAccount(Account account) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     "INSERT INTO account(username, email, phone) VALUES(?, ?, ?) "
+                             + "ON CONFLICT DO NOTHING",
+                     PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, account.getUserName());
+            ps.setString(2, account.getEmail());
+            ps.setString(3, account.getPhone() + "");
+            ps.execute();
+            try (ResultSet genKey = ps.getGeneratedKeys()) {
+                if (genKey.next()) {
+                    account.setId(genKey.getInt(1));
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Exception: ", e);
+        }
+        return account;
+    }
+
+    @Override
+    public Ticket createTicket(Ticket ticket) {
+        return null;
+    }
+
+    @Override
+    public Ticket getTicketByRowAndCell(int row, int cell) {
+        return null;
+    }
+
+    @Override
+    public Account findAccountByPhone(String email) {
+        return null;
+    }
+
+  /*  not implemented in the current version
+  @Override
     public Ticket getTicketByRowAndCell(int row, int cell) {
         Ticket ticket = null;
         try (Connection cn = pool.getConnection();
@@ -164,27 +193,8 @@ public class PsqlStore implements Store {
         return ticket;
     }
 
-    @Override
-    public Account createAccount(Account account) {
-        try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO account(username, email, phone) VALUES(?, ?, ?) "
-                             + "ON CONFLICT DO NOTHING",
-                     PreparedStatement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, account.getUserName());
-            ps.setString(2, account.getEmail());
-            ps.setString(3, account.getPhone() + "");
-            ps.execute();
-            try (ResultSet genKey = ps.getGeneratedKeys()) {
-                if (genKey.next()) {
-                    account.setId(genKey.getInt(1));
-                }
-            }
-        } catch (Exception e) {
-            LOGGER.error("Exception: ", e);
-        }
-        return account;
-    }
+
+
 
     @Override
     public Account findAccountByPhone(String email) {
@@ -202,7 +212,7 @@ public class PsqlStore implements Store {
                 }
             }
         } catch (Exception e) {
-          LOGGER.error("Exception: ", e);
+            LOGGER.error("Exception: ", e);
         }
         return account;
     }
@@ -212,5 +222,5 @@ public class PsqlStore implements Store {
         for (Place place : list) {
             System.out.println("Print Place : " + place);
         }
-    }
+    }*/
 }
