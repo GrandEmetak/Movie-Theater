@@ -16,6 +16,10 @@ you will be redirected to the form for entering personal data and paying for the
   
   ![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cinema/blob/main/image/Screenshot_3.jpg)
 
+- После этого вы  увидите подтверждение оплаченного
+  и зарезервировнного за вами места а также будете перенаправлены на главную страницу.
+  ![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cinema/blob/main/image/Screenshot_4.jpg)
+
  Used stack technologies:
 -  Java (Back-end)
 -  PSQL (data-base)
