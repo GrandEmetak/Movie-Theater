@@ -16,8 +16,9 @@ you will be redirected to the form for entering personal data and paying for the
   
   ![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cinema/blob/main/image/Screenshot_3.jpg)
 
-- После этого вы  увидите подтверждение оплаченного
-  и зарезервировнного за вами места а также будете перенаправлены на главную страницу.
+- After that, you will see a confirmation of the paid and reserved place for you,
+  and you will also be redirected to the main page.
+  
   ![Image of Arch](https://github.com/SlartiBartFast-art/job4j_cinema/blob/main/image/Screenshot_4.jpg)
 
  Used stack technologies:
