@@ -1,32 +1,34 @@
 function sendGreeting() {
     $.ajax({
-        type: 'POST', /* Куда пойдет запрос */
+        type: 'POST',
         url: 'http://localhost:8080/job4j_cinema/hall.do',
         cache: false,
-      /*  // data: 'name=' + $('#email').val(), */ /* Параметры передаваемые в запросе. */
-        dataType: 'json '  /* Тип данных в ответе (xml, json, script, html). */
-    }).done(function (response) { /* В переменной data содержится ответ от hall.do. */
+        dataType: 'json'
+    }).done(function (response) {
+        console.log(response)
         let str = '';
-        for (let i = 0; i < response.length; i++) {
-            str += '<tr> + <th> ' + (i + 1) + '</th>';
-            for (let j = 0; j < response[i].length; j++) {
-                console.log(response[i][j])
-                if (response[i][j].status === false) {
-                    str += '<td>' + '<label>' + '<input type="radio" name="place" value="1.1" disabled>' + 'Ряд ' + response[i][j].row
-                        + ', Место ' + response[i][j].cell + '</label>' + '</td>';
-                } else {
-                    let ind = response[i][j].row + '.' + response[i][j].cell;
-                    str += '<td>' + '<label>' + '<input type="radio" name="place"' + 'value="' + ind + '">' + 'Ряд ' + response[i][j].row
-                        + ', Место ' + response[i][j].cell + '</label>' + '</td>';
-                }
+        let str2 = '';
+        $.each(response, function (key, value) {
+            let ind = value.row + '.' + value.cell;
+            let ind1 = value.row + value.cell;
+
+            str2 = '<tr> + <th> ' + (value.row) + '</th>';
+            if (value.status === false) {
+                str += '<td ' + 'id="r' + ind1 + '">' + '<label>' + '<input type="radio" name="place" value="1.1" disabled>' + 'Ряд ' + value.row
+                    + ', Место ' + value.cell + '</label>' + '</td>';
+
+            } else {
+                str += '<td ' + 'id="r' + ind1 + '">' + '<label>' + '<input type="radio" name="place"' + 'value="' + ind + '">' + 'Ряд ' + value.row
+                    + ', Место ' + value.cell + '</label>' + '</td>';
             }
-            str += '<tr>';
-            $('#table tr:last').after(str);
-            str = '';
-        }
-        console.log(str)
-    }).fail(function (response) {
-        console.log(response);
+
+            if (value.cell === 3) {
+                $('#table tr:last').after(str2 + str + '<tr>');
+                str = '';
+            }
+        });
+    }).fail(function (err) {
+        console.log(err);
         alert('Ошибка');
     });
 }

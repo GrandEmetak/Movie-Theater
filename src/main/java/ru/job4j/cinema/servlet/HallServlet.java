@@ -20,6 +20,14 @@ import java.util.List;
 /**
  * Сервлет получает данные о текущес состоянии мест кинотеатра (заняты/свободны)
  * places busy or free
+ * в случае необходимости передачи через json массива использовать
+ *         int time = 0;
+ *         for (int i = 0; i < 3; i++) {
+ *             for (int j = 0; j < 3; j++) {
+ *                 arrPlace[i][j] = placeList.get(time++);
+ *             }
+ *         }
+ * String json = GSON.toJson(arrPlace);
  */
 /*@WebServlet(urlPatterns = "/hall.do")*/
 public class HallServlet extends HttpServlet {
@@ -33,15 +41,9 @@ public class HallServlet extends HttpServlet {
             placeList.add(place);
         }
 
-        int time = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                arrPlace[i][j] = placeList.get(time++);
-            }
-        }
         resp.setContentType("application/json; charset=utf-8");
         OutputStream output = resp.getOutputStream();
-        String json = GSON.toJson(arrPlace);
+        String json = GSON.toJson(placeList);
         output.write(json.getBytes(StandardCharsets.UTF_8));
         output.flush();
         output.close();
