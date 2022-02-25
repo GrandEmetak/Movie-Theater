@@ -1,5 +1,10 @@
 # job4j_cinema
 
+[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_cinema.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/job4j_cinema)
+![GitHub language count](https://img.shields.io/github/languages/count/SlartiBartFast-art/job4j_cinema)
+![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/job4j_cinema?logo=java&logoColor=red)
+
+
 Site for buying tickets to the cinema.
 
 - Main menu.
