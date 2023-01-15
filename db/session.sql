@@ -1,5 +1,5 @@
-create TABLE session (
-id SERIAL PRIMARY KEY,
+CREATE TABLE session (
+id INT SERIAL PRIMARY KEY,
 row INT NOT NULL,
 cell INT NOT NULL,
 status boolean NOT NULL

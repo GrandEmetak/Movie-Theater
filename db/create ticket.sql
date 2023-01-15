@@ -1,5 +1,5 @@
 CREATE TABLE ticket (
- id SERIAL PRIMARY KEY,
+ id INT SERIAL PRIMARY KEY,
  session_id INT NOT NULL,
  row INT NOT NULL,
  cell INT NOT NULL,
