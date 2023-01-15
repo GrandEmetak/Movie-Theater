@@ -1,6 +1,10 @@
 package movie.theater.model;
 
+/**
+ * Модель данных описывающая - место в кинотеатре
+ */
 public class Place {
+
     private int id;
     private int row;
     private int cell;

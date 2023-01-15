@@ -1,6 +1,10 @@
 package movie.theater.model;
 
+/**
+ * Модель данных описывающая - почтовый ящик
+ */
 public class Email {
+
     private String name;
 
     public String getName() {

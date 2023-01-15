@@ -3,9 +3,10 @@ package movie.theater.model;
 import java.util.Objects;
 
 /**
- * Модель данных описывающая Объект Билет
+ * Модель данных описывающая  - Объект Билет
  */
 public class Ticket {
+
     private int id;
     private int session;
     private int row;

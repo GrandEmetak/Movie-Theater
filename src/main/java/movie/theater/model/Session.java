@@ -3,9 +3,10 @@ package movie.theater.model;
 import java.util.Objects;
 
 /**
- * Модель описывает Сеанс/move
+ * Модель данных описывающая - Сеанс/move
  */
 public class Session {
+
     private int id;
     private String nameMove;
 
