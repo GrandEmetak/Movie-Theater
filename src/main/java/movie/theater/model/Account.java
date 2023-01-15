@@ -1,4 +1,4 @@
-package ru.job4j.cinema.model;
+package movie.theater.model;
 
 import java.util.Objects;
 

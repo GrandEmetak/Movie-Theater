@@ -11,11 +11,11 @@
     <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>HallServlet</servlet-name>
-        <servlet-class>ru.job4j.cinema.servlet.HallServlet</servlet-class>
+        <servlet-class>movie.theater.servlet.HallServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShoppingServlet</servlet-name>
-        <servlet-class>ru.job4j.cinema.servlet.ShoppingServlet</servlet-class>
+        <servlet-class>movie.theater.servlet.ShoppingServlet</servlet-class>
     </servlet>
     <!-- Обратите внимание. Этот сервлет будет доступен по адресу /hall.do.
           Тут есть расширение, оно нужно будет в разделе безопастность. -->

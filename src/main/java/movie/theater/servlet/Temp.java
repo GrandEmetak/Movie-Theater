@@ -1,7 +1,7 @@
-package ru.job4j.cinema.servlet;
+package movie.theater.servlet;
 
-import ru.job4j.cinema.model.Account;
-import ru.job4j.cinema.store.PsqlStore;
+import movie.theater.model.Account;
+import movie.theater.store.PsqlStore;
 
 public class Temp {
     public static void main(String[] args) {

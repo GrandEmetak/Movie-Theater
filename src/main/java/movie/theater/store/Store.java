@@ -1,9 +1,8 @@
-package ru.job4j.cinema.store;
+package movie.theater.store;
 
-import ru.job4j.cinema.model.Account;
-import ru.job4j.cinema.model.Place;
-import ru.job4j.cinema.model.Session;
-import ru.job4j.cinema.model.Ticket;
+import movie.theater.model.Account;
+import movie.theater.model.Ticket;
+import movie.theater.model.Place;
 
 import java.util.Collection;
 
