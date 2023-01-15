@@ -1,19 +1,18 @@
-package ru.job4j.cinema.store;
+package movie.theater.store;
 
+import movie.theater.model.Account;
+import movie.theater.model.Place;
+import movie.theater.model.Ticket;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import ru.job4j.cinema.model.Account;
-import ru.job4j.cinema.model.Place;
-import ru.job4j.cinema.model.Session;
-import ru.job4j.cinema.model.Ticket;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -61,13 +60,14 @@ public class PsqlStore implements Store {
 
     /**
      * show all places
-     * @return
+     *
+     * @return List Place
      */
     @Override
     public Collection<Place> findAllPlace() {
         List<Place> list = new ArrayList<>();
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("select * from session order by id")
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM session ORDER BY id")
         ) {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
@@ -103,6 +103,28 @@ public class PsqlStore implements Store {
         }
     }
 
+    @Override
+    public Ticket createTicket(Ticket ticket) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement(
+                     "INSERT INTO ticket(session_id, row, cell, account_id) VALUES(?, ?, ?, ?) "
+                             + "ON CONFLICT DO NOTHING",
+                     PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, ticket.getSession());
+            ps.setInt(2, ticket.getRow());
+            ps.setInt(3, ticket.getCell());
+            ps.setInt(4, ticket.getAccountId());
+            ps.execute();
+            try (ResultSet genKey = ps.getGeneratedKeys()) {
+                if (genKey.next()) {
+                    ticket.setId(genKey.getInt(1));
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Exception: ", e);
+        }
+        return ticket;
+    }
 
     /**
      * put Object Account to DB table account
@@ -133,22 +155,6 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public Ticket createTicket(Ticket ticket) {
-        return null;
-    }
-
-    @Override
-    public Ticket getTicketByRowAndCell(int row, int cell) {
-        return null;
-    }
-
-    @Override
-    public Account findAccountByPhone(String email) {
-        return null;
-    }
-
-  /*  not implemented in the current version
-  @Override
     public Ticket getTicketByRowAndCell(int row, int cell) {
         Ticket ticket = null;
         try (Connection cn = pool.getConnection();
@@ -172,32 +178,6 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public Ticket createTicket(Ticket ticket) {
-        try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO ticket(session_id, row, cell, account_id) VALUES(?, ?, ?, ?) "
-                             + "ON CONFLICT DO NOTHING",
-                     PreparedStatement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, ticket.getSession());
-            ps.setInt(2, ticket.getRow());
-            ps.setInt(3, ticket.getCell());
-            ps.setInt(4, ticket.getAccountId());
-            ps.execute();
-            try (ResultSet genKey = ps.getGeneratedKeys()) {
-                if (genKey.next()) {
-                    ticket.setId(genKey.getInt(1));
-                }
-            }
-        } catch (Exception e) {
-            LOGGER.error("Exception: ", e);
-        }
-        return ticket;
-    }
-
-
-
-
-    @Override
     public Account findAccountByPhone(String email) {
         Account account = null;
         try (Connection cn = pool.getConnection();
@@ -218,10 +198,4 @@ public class PsqlStore implements Store {
         return account;
     }
 
-    public static void main(String[] args) {
-        var list = PsqlStore.instOf().findAllPlace();
-        for (Place place : list) {
-            System.out.println("Print Place : " + place);
-        }
-    }*/
 }
