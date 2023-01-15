@@ -3,7 +3,7 @@
 [![Build Status](https://app.travis-ci.com/GrandEmetak/Movie-Theater.svg?branch=main)](https://app.travis-ci.com/GrandEmetak/Movie-Theater)
 ![GitHub language count](https://img.shields.io/github/languages/count/GrandEmetak/Movie-Theater)
 ![GitHub top language](https://img.shields.io/github/languages/top/GrandEmetak/Movie-Theater?logo=java&logoColor=red)
-![GitHub last commit](https://img.shields.io/github/last-commit/SGrandEmetak/Movie-Theater?logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/GrandEmetak/Movie-Theater?logo=github)
 
 
 
