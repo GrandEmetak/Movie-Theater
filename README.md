@@ -6,11 +6,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/SGrandEmetak/Movie-Theater?logo=github)
 
 
-[![Build Status](https://app.travis-ci.com/SlartiBartFast-art/job4j_cinema.svg?branch=main)](https://app.travis-ci.com/SlartiBartFast-art/job4j_cinema)
-![GitHub language count](https://img.shields.io/github/languages/count/SlartiBartFast-art/job4j_cinema)
-![GitHub top language](https://img.shields.io/github/languages/top/SlartiBartFast-art/job4j_cinema?logo=java&logoColor=red)
-![GitHub last commit](https://img.shields.io/github/last-commit/SlartiBartFast-art/job4j_cinema?logo=github)
-
 
 Site for buying tickets to the cinema.
 
