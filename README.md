@@ -21,7 +21,7 @@ Site for buying tickets to the cinema.
 - After that,
 you will be redirected to the form for entering personal data and paying for the selected seat.
   
-  ![Image of Arch](https://github.com/SGrandEmetak/Movie-Theater/blob/main/image/Screenshot_3.jpg)
+  ![Image of Arch](https://github.com/GrandEmetak/Movie-Theater/blob/main/image/Screenshot_3.jpg)
 
 - After that, you will see a confirmation of the paid and reserved place for you,
   and you will also be redirected to the main page.
