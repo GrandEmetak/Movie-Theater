@@ -6,14 +6,9 @@ import movie.theater.model.Place;
 
 import java.util.Collection;
 
-/**
- * Расширьте интерфейс Store.
- * Добавьте методы для работы с классом User.
- * сохранение и поиск по email
- * @author SlartiBartFast-art
- * @since 03.11.21
- */
+
 public interface Store {
+
     Collection<Place> findAllPlace();
 
     void reservePlace(int row, int cell);
